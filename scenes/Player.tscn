@@ -1,11 +1,46 @@
-[gd_scene load_steps=32 format=3 uid="uid://bebanj5l1hdsu"]
+[gd_scene load_steps=44 format=3 uid="uid://bebanj5l1hdsu"]
 
 [ext_resource type="Script" path="res://scripts/Player.gd" id="1_8e3sk"]
+[ext_resource type="Texture2D" uid="uid://bia5s2ou5vhfd" path="res://assets/sprites/PlayerCastRod.png" id="2_chtw0"]
 [ext_resource type="Texture2D" uid="uid://dudsfewio5ynp" path="res://assets/sprites/PlayerDown.png" id="2_g41g0"]
+[ext_resource type="Texture2D" uid="uid://ct4xkjpcagfpu" path="res://assets/sprites/PlayerFishing.png" id="3_duxoc"]
 [ext_resource type="Texture2D" uid="uid://ywv7qxxpxsl6" path="res://assets/sprites/PlayerStanding.png" id="3_w2k6q"]
 [ext_resource type="Texture2D" uid="uid://cm5eosdvr6u1a" path="res://assets/sprites/PlayerLeft.png" id="4_tyi30"]
 [ext_resource type="Texture2D" uid="uid://cki0vk4kdf3eu" path="res://assets/sprites/PlayerRight.png" id="5_jrpb1"]
 [ext_resource type="Texture2D" uid="uid://bx1toodpt8mot" path="res://assets/sprites/PlayerUp.png" id="6_8my2d"]
+[ext_resource type="Texture2D" uid="uid://dhcmb0hk6qily" path="res://assets/sprites/PlayerIdleRod.png" id="6_qyv1l"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_re4wn"]
+atlas = ExtResource("2_chtw0")
+region = Rect2(0, 0, 300, 300)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2ru0h"]
+atlas = ExtResource("2_chtw0")
+region = Rect2(300, 0, 300, 300)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_cy807"]
+atlas = ExtResource("2_chtw0")
+region = Rect2(0, 300, 300, 300)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_djn88"]
+atlas = ExtResource("2_chtw0")
+region = Rect2(300, 300, 300, 300)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ujoup"]
+atlas = ExtResource("3_duxoc")
+region = Rect2(0, 0, 300, 300)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_w6f78"]
+atlas = ExtResource("3_duxoc")
+region = Rect2(300, 0, 300, 300)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_r4hyj"]
+atlas = ExtResource("3_duxoc")
+region = Rect2(0, 300, 300, 300)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gm0kr"]
+atlas = ExtResource("3_duxoc")
+region = Rect2(300, 300, 300, 300)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_6py8o"]
 atlas = ExtResource("2_g41g0")
@@ -37,6 +72,10 @@ region = Rect2(0, 220, 110, 110)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_al0ib"]
 atlas = ExtResource("3_w2k6q")
+region = Rect2(0, 0, 110, 110)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1ocfr"]
+atlas = ExtResource("6_qyv1l")
 region = Rect2(0, 0, 110, 110)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_bi6r2"]
@@ -103,6 +142,40 @@ region = Rect2(0, 220, 110, 110)
 animations = [{
 "frames": [{
 "duration": 1.0,
+"texture": SubResource("AtlasTexture_re4wn")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2ru0h")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_cy807")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_djn88")
+}],
+"loop": true,
+"name": &"Cast",
+"speed": 7.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ujoup")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_w6f78")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_r4hyj")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_gm0kr")
+}],
+"loop": true,
+"name": &"CastWait",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
 "texture": SubResource("AtlasTexture_6py8o")
 }, {
 "duration": 1.0,
@@ -133,6 +206,14 @@ animations = [{
 }],
 "loop": true,
 "name": &"Idle",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1ocfr")
+}],
+"loop": true,
+"name": &"IdleFishing",
 "speed": 5.0
 }, {
 "frames": [{
@@ -205,8 +286,8 @@ script = ExtResource("1_8e3sk")
 
 [node name="Sprite" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_tg7xo")
-animation = &"Up"
-frame_progress = 0.730635
+animation = &"IdleFishing"
+frame_progress = 0.299497
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, 5)
