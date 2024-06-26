@@ -1,0 +1,73 @@
+[gd_scene load_steps=10 format=3 uid="uid://dnk33kifah13v"]
+
+[ext_resource type="Texture2D" uid="uid://c2oyfbj0flsd3" path="res://assets/sprites/Dock.png" id="1_36if1"]
+[ext_resource type="PackedScene" uid="uid://bebanj5l1hdsu" path="res://scenes/Player.tscn" id="2_ykilq"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4u2pp"]
+atlas = ExtResource("1_36if1")
+region = Rect2(0, 0, 800, 450)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_28q73"]
+atlas = ExtResource("1_36if1")
+region = Rect2(0, 450, 800, 450)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_gd4jp"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4u2pp")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_28q73")
+}],
+"loop": true,
+"name": &"FishingBackground",
+"speed": 2.0
+}]
+
+[sub_resource type="SegmentShape2D" id="SegmentShape2D_vsjh4"]
+b = Vector2(608, 0)
+
+[sub_resource type="SegmentShape2D" id="SegmentShape2D_if7md"]
+a = Vector2(-3, -2)
+b = Vector2(-3, 213)
+
+[sub_resource type="SegmentShape2D" id="SegmentShape2D_i2myu"]
+b = Vector2(0, 215)
+
+[sub_resource type="SegmentShape2D" id="SegmentShape2D_ghx7n"]
+a = Vector2(0, 215)
+b = Vector2(608, 215)
+
+[node name="FishingScene" type="Node2D"]
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(400, 225)
+sprite_frames = SubResource("SpriteFrames_gd4jp")
+animation = &"FishingBackground"
+autoplay = "FishingBackground"
+frame_progress = 0.936746
+
+[node name="Player" parent="." instance=ExtResource("2_ykilq")]
+position = Vector2(296, 91)
+
+[node name="BoundryTop" type="StaticBody2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="BoundryTop"]
+shape = SubResource("SegmentShape2D_vsjh4")
+
+[node name="BoundryRight" type="StaticBody2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="BoundryRight"]
+position = Vector2(611, 2)
+shape = SubResource("SegmentShape2D_if7md")
+
+[node name="BoundryLeft" type="StaticBody2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="BoundryLeft"]
+shape = SubResource("SegmentShape2D_i2myu")
+
+[node name="BoundryBottom" type="StaticBody2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="BoundryBottom"]
+shape = SubResource("SegmentShape2D_ghx7n")
