@@ -1,8 +1,11 @@
-[gd_scene load_steps=12 format=3 uid="uid://dnk33kifah13v"]
+[gd_scene load_steps=15 format=3 uid="uid://dnk33kifah13v"]
 
 [ext_resource type="Texture2D" uid="uid://c2oyfbj0flsd3" path="res://assets/sprites/Dock.png" id="1_36if1"]
 [ext_resource type="PackedScene" uid="uid://bebanj5l1hdsu" path="res://scenes/Player.tscn" id="2_ykilq"]
 [ext_resource type="Script" path="res://scripts/FishingPromptArea.gd" id="3_pcv2j"]
+[ext_resource type="Texture2D" uid="uid://dpw7x5ll7o2fk" path="res://assets/sprites/progessBar.png" id="4_pl7rj"]
+[ext_resource type="Texture2D" uid="uid://b67ith0o10qia" path="res://assets/sprites/GreenLine.png" id="5_kaogt"]
+[ext_resource type="Texture2D" uid="uid://b5xroleggiuix" path="res://assets/sprites/CaughtSign.png" id="6_hk2x5"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_4u2pp"]
 atlas = ExtResource("1_36if1")
@@ -41,7 +44,7 @@ a = Vector2(0, 215)
 b = Vector2(608, 215)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_r1hls"]
-size = Vector2(70, 215)
+size = Vector2(86, 215)
 
 [node name="FishingScene" type="Node2D"]
 
@@ -53,8 +56,7 @@ autoplay = "FishingBackground"
 frame_progress = 0.936746
 
 [node name="Player" parent="." instance=ExtResource("2_ykilq")]
-position = Vector2(296, 91)
-collision_mask = 3
+position = Vector2(411, 87)
 
 [node name="BoundryTop" type="StaticBody2D" parent="."]
 
@@ -79,18 +81,71 @@ shape = SubResource("SegmentShape2D_ghx7n")
 
 [node name="FishingPromptArea" type="Area2D" parent="."]
 collision_layer = 2
-collision_mask = 3
 script = ExtResource("3_pcv2j")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="FishingPromptArea"]
-position = Vector2(573, 107.5)
+position = Vector2(562, 107)
 shape = SubResource("RectangleShape2D_r1hls")
 
-[node name="Label" type="Label" parent="FishingPromptArea"]
+[node name="FishingPromptLabel" type="Label" parent="FishingPromptArea"]
 visible = false
 offset_right = 40.0
 offset_bottom = 23.0
-text = "Press \"F\" to Fish"
+text = "Press 'F' to Fish"
+
+[node name="InstructionLabel" type="Label" parent="FishingPromptArea"]
+offset_right = 321.0
+offset_bottom = 23.0
+
+[node name="ReelingBar" type="Control" parent="."]
+visible = false
+layout_mode = 3
+anchors_preset = 0
+offset_left = 276.0
+offset_top = 345.0
+offset_right = 558.0
+offset_bottom = 369.0
+
+[node name="Bar" type="TextureProgressBar" parent="ReelingBar"]
+layout_mode = 0
+offset_top = 1.0
+offset_right = 280.0
+offset_bottom = 21.0
+value = 50.0
+texture_under = ExtResource("4_pl7rj")
+
+[node name="GreenLine" type="TextureRect" parent="ReelingBar/Bar"]
+layout_mode = 0
+offset_left = 120.0
+offset_top = -10.0
+offset_right = 160.0
+offset_bottom = 30.0
+texture = ExtResource("5_kaogt")
+stretch_mode = 3
+
+[node name="FishSign" type="Control" parent="."]
+visible = false
+layout_mode = 3
+anchors_preset = 0
+offset_left = 296.0
+offset_top = 1.0
+offset_right = 518.0
+offset_bottom = 165.0
+
+[node name="Sign" type="TextureRect" parent="FishSign"]
+layout_mode = 0
+offset_left = -23.0
+offset_top = -56.0
+offset_right = 233.0
+offset_bottom = 200.0
+texture = ExtResource("6_hk2x5")
+
+[node name="FishImage" type="TextureRect" parent="FishSign"]
+layout_mode = 0
+offset_left = 48.0
+offset_top = 39.0
+offset_right = 168.0
+offset_bottom = 127.0
 
 [connection signal="body_entered" from="FishingPromptArea" to="Player" method="_on_FishingPromptArea_body_entered"]
 [connection signal="body_exited" from="FishingPromptArea" to="Player" method="_on_FishingPromptArea_body_exited"]
