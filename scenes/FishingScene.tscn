@@ -96,6 +96,7 @@ text = "Press 'F' to Fish"
 [node name="InstructionLabel" type="Label" parent="FishingPromptArea"]
 offset_right = 321.0
 offset_bottom = 23.0
+metadata/_edit_use_anchors_ = true
 
 [node name="ReelingBar" type="Control" parent="."]
 visible = false
